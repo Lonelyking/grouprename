@@ -21,13 +21,6 @@ else:
 
 @Client.on_message(filters.private & filters.photo)
 async def save_photo(bot, update):
-    if update.from_user.id not in Config.AUTH_USERS:
-        await update.delete()
-        a = await update.reply_text(text=Translation.NOT_AUTH_TXT)
-        time.sleep(5)
-        await a.delete()
-        await bot_settings(bot, update)
-        return
     try:
         thumb_image_path = os.getcwd() + "/" + "thumbnails" + "/" + str(update.from_user.id) + ".jpg"
         await bot.download_media(message=update, file_name=thumb_image_path)
