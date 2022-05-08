@@ -20,12 +20,6 @@ else:
 # ******************************** CONFIGURING DEFAULT SENDING CHANNEL USING COMMANDS *********************************#
 @Client.on_message(filters.private & filters.command(["channel1"]))
 async def channel1(bot, update):
-    if update.from_user.id not in Config.AUTH_USERS:
-        await bot.delete_messages(chat_id=update.chat.id, message_ids=update.message_id)
-        a = await update.reply_text(text=Translation.NOT_AUTH_TXT)
-        time.sleep(5)
-        await a.delete()
-        return
     channel_id = Config.CHANNEL1_ID
     channel_string = Config.CHANNEL1_NAME
     if not channel_id:
